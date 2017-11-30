@@ -1,4 +1,5 @@
+
 ReactDOM.render(
-        <h1>Tetris</h1>,
+        <Board width="6" height="10" />,
         document.getElementById('tetris')
       );
