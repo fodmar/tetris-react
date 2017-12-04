@@ -8,8 +8,14 @@
     <script src="lib/babel.min.js"></script>
   </head>
   <body>
+	<h1 id="error-message" style="display: none;">Unexpected error occured, check console for details.</h1>
     <div id="tetris"></div>
 	
+	<script type="text/javascript">
+		window.onerror = function (e) {
+			document.getElementById("error-message").style.display = "block";
+		};
+	</script>
 	<script type="text/babel" src="js/square.js"></script>
 	<script type="text/babel" src="js/board.js"></script>
     <script type="text/babel" src="js/tetris.js"</script>
