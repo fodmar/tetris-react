@@ -19,6 +19,12 @@
 	</script>
 	<script type="text/babel" src="js/square.js"></script>
 	<script type="text/babel" src="js/board.js"></script>
-    <script type="text/babel" src="js/tetris.js"</script>
+    <script type="text/babel" src="js/tetris.js"></script>
+	<script type="text/babel">
+		ReactDOM.render(
+			<Tetris width={10} height={20} interval={1000} />,
+			document.getElementById('tetris')
+		);
+	</script>
   </body>
 </html>
