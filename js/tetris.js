@@ -4,14 +4,14 @@ class Tetris extends React.Component {
 	}
 	
 	componentDidMount() {
-        this.timer = setInterval(this.tick.bind(this), this.props.interval);
+        this.props.timer.start(this.run.bind(this), this.props.interval);
     }
 
     componentWillUnmount() {
-        clearInterval(this.timer);
+        this.props.timer.stop();
     }
 
-    tick() {
+    run() {
         this.setState({});
     }
 	
