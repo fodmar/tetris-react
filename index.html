@@ -3,34 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <title>Tetris</title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css"> 
+    <link rel="stylesheet" type="text/css" href="css/styles.css"> 
     <script src="lib/react.development.js"></script>
     <script src="lib/react-dom.development.js"></script>
     <script src="lib/babel.min.js"></script>
   </head>
   <body>
-	<div id="error-message" style="display: none;">
-		<p>Unexpected error occured, check console for details.</p>
-		<ul>
-			<li>For "Cross origin requests" error make sure to serve this file via HTTP server</li>
-		</ul>
-	</div>
+    <div id="error-message" style="display: none;">
+        <p>Unexpected error occured, check console for details.</p>
+        <ul>
+            <li>For "Cross origin requests" error make sure to serve this file via HTTP server</li>
+        </ul>
+    </div>
     <div id="tetris"></div>
-	
-	<script type="text/javascript">
-		window.onerror = function (e) {
-			document.getElementById("error-message").style.display = "block";
-		};
-	</script>
-	<script type="text/babel" src="js/timer.js"></script>
-	<script type="text/babel" src="js/square.js"></script>
-	<script type="text/babel" src="js/board.js"></script>
+    
+    <script type="text/javascript">
+        window.onerror = function (e) {
+            document.getElementById("error-message").style.display = "block";
+        };
+    </script>
+    <script type="text/babel" src="js/timer.js"></script>
+    <script type="text/babel" src="js/square.js"></script>
+    <script type="text/babel" src="js/board.js"></script>
     <script type="text/babel" src="js/tetris.js"></script>
-	<script type="text/babel">
-		ReactDOM.render(
-			<Tetris width={10} height={20} timer={new Timer()} interval={1000} />,
-			document.getElementById('tetris')
-		);
-	</script>
+    <script type="text/babel">
+        ReactDOM.render(
+            <Tetris width={10} height={20} timer={new Timer()} interval={1000} />,
+            document.getElementById('tetris')
+        );
+    </script>
   </body>
 </html>

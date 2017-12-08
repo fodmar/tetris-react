@@ -1,9 +1,9 @@
 class Tetris extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-	
-	componentDidMount() {
+    constructor(props) {
+        super(props);
+    }
+    
+    componentDidMount() {
         this.props.timer.start(this.run.bind(this), this.props.interval);
     }
 
@@ -14,8 +14,8 @@ class Tetris extends React.Component {
     run() {
         this.setState({});
     }
-	
-	render() {
-		return <Board width={this.props.width} height={this.props.height} />;
-	}
+    
+    render() {
+        return <Board width={this.props.width} height={this.props.height} />;
+    }
 }
