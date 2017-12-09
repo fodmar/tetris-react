@@ -23,12 +23,19 @@
         };
     </script>
     <script type="text/babel" src="js/timer.js"></script>
+    <script type="text/babel" src="js/keyhandler.js"></script>
     <script type="text/babel" src="js/square.js"></script>
     <script type="text/babel" src="js/board.js"></script>
     <script type="text/babel" src="js/tetris.js"></script>
     <script type="text/babel">
         ReactDOM.render(
-            <Tetris width={10} height={20} timer={new Timer()} interval={1000} />,
+            <Tetris
+                width={10}
+                height={20}
+                interval={1000}
+                keyhandler={new KeyHandler()}
+                timer={new Timer()}
+            />,
             document.getElementById('tetris')
         );
     </script>
