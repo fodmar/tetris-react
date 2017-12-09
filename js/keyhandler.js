@@ -15,8 +15,6 @@ class KeyHandler {
     }
     
     register(keys, callback) {
-        this.unregisterAll();
-        
         this.keys = keys;
         this.callback = callback;
         
