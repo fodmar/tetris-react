@@ -6,12 +6,10 @@ class Board extends React.Component {
     render() {
         var board = [];
         
-        for (var i = 0; i < this.props.height; i++) {
-            var row = [];
-            
-            for (var j = 0; j < this.props.width; j++) {
-                row.push(<Square />);
-            }
+        for (var i = 0; i < this.props.board.length; i++) {
+            var row = this.props.board[i].map(function (e) {
+                return <Square />
+            });
             
             board.push(<div className="row">{row}</div>);
         }
