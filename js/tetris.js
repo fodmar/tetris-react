@@ -15,6 +15,7 @@ class Tetris extends React.Component {
 
     handleKey(e) {
         console.log(e);
+        console.log(this.props.figureGenerator.generate(2,3));
     }
     
     run() {

@@ -22,8 +22,10 @@
             document.getElementById("error-message").style.display = "block";
         };
     </script>
+    <script type="text/babel" src="js/figures/o.js"></script>
     <script type="text/babel" src="js/timer.js"></script>
     <script type="text/babel" src="js/keyhandler.js"></script>
+    <script type="text/babel" src="js/figureGenerator.js"></script>
     <script type="text/babel" src="js/square.js"></script>
     <script type="text/babel" src="js/board.js"></script>
     <script type="text/babel" src="js/tetris.js"></script>
@@ -35,6 +37,7 @@
                 interval={1000}
                 keyhandler={new KeyHandler()}
                 timer={new Timer()}
+                figureGenerator={new FigureGenerator()}
             />,
             document.getElementById('tetris')
         );
