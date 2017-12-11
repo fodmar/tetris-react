@@ -6,7 +6,10 @@ class Tetris extends React.Component {
             currentFigure: null
         };
         
-        this.board = Array(this.props.height).fill(Array(this.props.width));
+        this.board = Array(this.props.height);
+        for (var i = 0; i < this.board.length; i++) {
+            this.board[i] = Array(this.props.width).fill(null);
+        }
     }
     
     componentDidMount() {
@@ -44,16 +47,20 @@ class Tetris extends React.Component {
     
     run() {
         if (this.state.currentFigure) {
-            var reachedEnd = this.state.currentFigure.moveDown(this.board);
+            var moved = this.state.currentFigure.moveDown(this.board);
             
-            if (reachedEnd) {
+            if (!moved) {
+                delete this.state.currentFigure;
+                
                 this.setState({
                     currentFigure: null
                 });
+            } else {
+                this.setState({});
             }
         } else {
             var figure = this.props.figureGenerator.generate();
-            var placed = figure.place(this.board);
+            var placed = figure.place(this.board, 0, this.props.width / 2 - 1);
             
             if  (placed) {
                 this.setState({

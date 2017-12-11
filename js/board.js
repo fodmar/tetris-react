@@ -8,7 +8,7 @@ class Board extends React.Component {
         
         for (var i = 0; i < this.props.board.length; i++) {
             var row = this.props.board[i].map(function (e) {
-                return <Square />
+                return <Square type={e} />
             });
             
             board.push(<div className="row">{row}</div>);
