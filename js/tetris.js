@@ -23,12 +23,10 @@ class Tetris extends React.Component {
     }
 
     handleKey(command) {
-        console.log(command);
-        
         if (this.state.currentFigure) {
             switch (command) {
                 case "boost":
-                    run();
+                    this.run();
                     break;
                 case "left":
                     this.state.currentFigure.moveLeft(this.board);
