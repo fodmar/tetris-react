@@ -1,8 +1,8 @@
+/* this is tetris figure square:
+ * ##
+ * ##
+ */
 class O {
-    constructor() {
-
-    }
-    
     canPlace(board, x, y) {
         return board[x] && 
                board[x][y] === null &&
@@ -33,19 +33,32 @@ class O {
         return false;
     }
     
-    moveDown(board) {
+    move(board, newX, newY) {
         var result = false;
         
         this.draw(board, null);
         
-        if (this.canPlace(board, this.x + 1, this.y)) {
-            this.x += 1;
+        if (this.canPlace(board, newX, newY)) {
+            this.x = newX;
+            this.y = newY;
             result = true;
         }
         
         this.draw(board, "o");
         
         return result;
+    }
+    
+    moveDown(board) {
+        return this.move(board, this.x + 1, this.y);
+    }
+    
+    moveLeft(board) {
+        return this.move(board, this.x, this.y - 1);
+    }
+    
+    moveRight(board) {
+        return this.move(board, this.x, this.y + 1);
     }
     
     rotate(board) {
