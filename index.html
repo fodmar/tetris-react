@@ -24,7 +24,8 @@
     </script>
     <script type="text/babel" src="js/figures/o.js"></script>
     <script type="text/babel" src="js/timer.js"></script>
-    <script type="text/babel" src="js/keyhandler.js"></script>
+    <script type="text/babel" src="js/keyHandler.js"></script>
+    <script type="text/babel" src="js/scoreHandler.js"></script>
     <script type="text/babel" src="js/figureGenerator.js"></script>
     <script type="text/babel" src="js/square.js"></script>
     <script type="text/babel" src="js/board.js"></script>
@@ -35,7 +36,8 @@
                 width={10}
                 height={20}
                 interval={1000}
-                keyhandler={new KeyHandler()}
+                keyHandler={new KeyHandler()}
+                scoreHandler={new ScoreHandler()}
                 timer={new Timer()}
                 figureGenerator={new FigureGenerator()}
             />,

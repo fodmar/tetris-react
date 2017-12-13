@@ -3,7 +3,8 @@ class Tetris extends React.Component {
         super(props);
         
         this.state = {
-            currentFigure: null
+            currentFigure: null,
+            score: 0
         };
         
         this.board = Array(this.props.height);
@@ -14,12 +15,12 @@ class Tetris extends React.Component {
     
     componentDidMount() {
         this.props.timer.start(this.run.bind(this), this.props.interval);
-        this.props.keyhandler.register(this.handleKey.bind(this));
+        this.props.keyHandler.register(this.handleKey.bind(this));
     }
 
     componentWillUnmount() {
         this.props.timer.stop();
-        this.props.keyhandler.unregisterAll();
+        this.props.keyhHandler.unregisterAll();
     }
 
     handleKey(command) {
@@ -57,7 +58,8 @@ class Tetris extends React.Component {
                 delete this.state.currentFigure;
                 
                 this.setState({
-                    currentFigure: null
+                    currentFigure: null,
+                    score: this.state.score + this.props.scoreHandler.handleScore(this.board)
                 });
             } else {
                 this.setState({});
@@ -77,6 +79,16 @@ class Tetris extends React.Component {
     }
     
     render() {
-        return <Board board={this.board} />;
+        return ( 
+            <div className="tetris-content">
+                <div className="tetris-board">
+                    <Board board={this.board} />
+                </div>
+                <div className="tetris-score">
+                    <div>Score:</div>
+                    <label>{this.state.score}</label>
+                </div>
+            </div>
+        )
     }
 }

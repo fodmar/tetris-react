@@ -17,3 +17,16 @@
 .o {
     background-color: orange;
 }
+
+.tetris-content {
+    display: inline-block;
+}
+
+.tetris-board {
+    display: inline-block;
+}
+
+.tetris-score {
+    float: right;
+    margin-left: 10px;
+}
