@@ -5,13 +5,13 @@ class ScoreHandler {
         for (var i = 0; i < board.length; i++) {
             if (this.isFilled(board[i])) {
                 var array = board.splice(i, 1)[0];
-                this.fillWithNull(array);
+                array.fill(null);
                 board.unshift(array);
                 filledRows++;
             }
         }
 
-        return this.power(filledRows) * 100;
+        return this.factorial(filledRows) * 100;
     }
     
     isFilled(array) {
@@ -24,13 +24,7 @@ class ScoreHandler {
         return true;
     }
     
-    fillWithNull(array) {
-        for (var i = 0; i < array.length; i++) {
-            array[i] = null;
-        }
-    }
-    
-    power(number) {
+    factorial(number) {
         var result = number;
         
         while (number > 1) {
