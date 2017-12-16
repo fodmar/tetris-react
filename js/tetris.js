@@ -4,7 +4,8 @@ class Tetris extends React.Component {
         
         this.state = {
             currentFigure: null,
-            score: 0
+            score: 0,
+            pause: false
         };
         
         this.board = Array(this.props.height);
@@ -20,10 +21,14 @@ class Tetris extends React.Component {
 
     componentWillUnmount() {
         this.props.timer.stop();
-        this.props.keyhHandler.unregisterAll();
+        this.props.keyHandler.unregisterAll();
     }
 
     handleKey(command) {
+        if (this.state.pause && command !== "pause") {
+            return;
+        }
+        
         var success;
         
         if (this.state.currentFigure) {
@@ -41,6 +46,14 @@ class Tetris extends React.Component {
                     success = this.state.currentFigure.rotate(this.board);
                     break;
                 case "pause":
+                    this.setState({ pause: !this.state.pause });
+                    
+                    if (this.state.pause) {
+                        this.props.timer.stop();
+                    } else {
+                        this.props.timer.restart();
+                    }
+                    
                     break;
             }
         }
@@ -79,9 +92,12 @@ class Tetris extends React.Component {
     }
     
     render() {
+        var pauseClass = this.state.pause ? "pause" : "";
+        
         return ( 
             <div className="tetris-content">
-                <div className="tetris-board">
+                <div className={"tetris-board " + pauseClass}>
+                    <div className="tetris-pause">Pause</div>
                     <Board board={this.board} />
                 </div>
                 <div className="tetris-score">

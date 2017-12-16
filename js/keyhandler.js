@@ -18,11 +18,12 @@ class KeyHandler {
     
     register(callback) {
         this.callback = callback;
+        this.handleRef = this.handle.bind(this);
         
-        document.addEventListener("keydown", this.handle.bind(this));
+        document.addEventListener("keydown", this.handleRef);
     }
     
     unregisterAll() {
-        document.removeEventListener("keydown", this.handle.bind(this));
+        document.removeEventListener("keydown", this.handleRef);
     }
 }

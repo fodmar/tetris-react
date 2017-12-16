@@ -24,9 +24,28 @@
 
 .tetris-board {
     display: inline-block;
+    position: relative;
+}
+
+.tetris-board.pause .board {
+    opacity: 0.3;
 }
 
 .tetris-score {
     float: right;
     margin-left: 10px;
+}
+
+.tetris-pause {
+    display: none;
+}
+
+.pause .tetris-pause {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 2em;
 }
