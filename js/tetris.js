@@ -5,7 +5,8 @@ class Tetris extends React.Component {
         this.state = {
             currentFigure: null,
             score: 0,
-            pause: false
+            pause: false,
+            gameOver: false
         };
         
         this.board = Array(this.props.height);
@@ -64,40 +65,50 @@ class Tetris extends React.Component {
     }
     
     run() {
+        var newState = {};
+        
         if (this.state.currentFigure) {
             var moved = this.state.currentFigure.moveDown(this.board);
             
             if (!moved) {
                 delete this.state.currentFigure;
                 
-                this.setState({
-                    currentFigure: null,
-                    score: this.state.score + this.props.scoreHandler.handleScore(this.board)
-                });
-            } else {
-                this.setState({});
+                newState.currentFigure = null;
+                newState.score = this.state.score + this.props.scoreHandler.handleScore(this.board);
             }
         } else {
             var figure = this.props.figureGenerator.generate();
             var placed = figure.place(this.board, 0, this.props.width / 2 - 1);
             
             if  (placed) {
-                this.setState({
-                   currentFigure: figure
-                });
+                newState.currentFigure = figure;
             } else {
-                // game over
+                this.componentWillUnmount();
+                newState.gameOver = true;
             }
         }
+        
+        this.setState(newState);
     }
     
     render() {
-        var pauseClass = this.state.pause ? "pause" : "";
+        var cssClass;
+        var message;
+        
+        if (this.state.pause) {
+            message = "Pause";
+        } else if (this.state.gameOver) {
+            message = "Game over";
+        }
+        
+        if (message) {
+            cssClass = "message";
+        }
         
         return ( 
             <div className="tetris-content">
-                <div className={"tetris-board " + pauseClass}>
-                    <div className="tetris-pause">Pause</div>
+                <div className={"tetris-board " + cssClass}>
+                    <div className="tetris-message">{message}</div>
                     <Board board={this.board} />
                 </div>
                 <div className="tetris-score">

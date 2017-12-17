@@ -27,7 +27,7 @@
     position: relative;
 }
 
-.tetris-board.pause .board {
+.tetris-board.message .board {
     opacity: 0.3;
 }
 
@@ -36,11 +36,11 @@
     margin-left: 10px;
 }
 
-.tetris-pause {
+.tetris-message {
     display: none;
 }
 
-.pause .tetris-pause {
+.message .tetris-message {
     display: block;
     position: absolute;
     top: 50%;
@@ -48,4 +48,5 @@
     transform: translate(-50%, -50%);
     font-weight: bold;
     font-size: 2em;
+    text-align: center;
 }
