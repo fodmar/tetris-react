@@ -1,9 +1,7 @@
 class FigureGenerator {
     constructor() {
         this.figures = [
-            function() {
-                return new O();
-            }
+            () => new O()
         ];
     }
     
