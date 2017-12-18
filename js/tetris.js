@@ -3,16 +3,35 @@ class Tetris extends React.Component {
         super(props);
         
         this.state = {
-            currentFigure: null,
+            currentFigure: this.props.figureGenerator.generate(),
+            nextFigure: this.props.figureGenerator.generate(),
             score: 0,
             pause: false,
-            gameOver: false
+            gameOver: false,
         };
         
-        this.board = Array(this.props.height);
-        for (var i = 0; i < this.board.length; i++) {
-            this.board[i] = Array(this.props.width).fill(null);
+        this.board = this.createMatrix(this.props.width, this.props.height);
+        this.previewBoard = this.createMatrix(3, 4);
+        
+        this.state.nextFigure.place(this.previewBoard, 0, 0);
+        this.state.currentFigure.place(this.board, 0, this.props.width / 2 - 1);
+    }
+    
+    createMatrix(width, height) {
+        var matrix = Array(height);
+        for (var i = 0; i < height; i++) {
+            matrix[i] = Array(width).fill(null);
         }
+        
+        return matrix;
+    }
+    
+    cleanMatrix(matrix) {
+        for (var i = 0; i < matrix.length; i++) {
+            matrix[i].fill(null);
+        }
+        
+        return matrix;
     }
     
     componentDidMount() {
@@ -66,23 +85,17 @@ class Tetris extends React.Component {
     
     run() {
         var newState = {};
-        
-        if (this.state.currentFigure) {
-            var moved = this.state.currentFigure.moveDown(this.board);
+        var moved = this.state.currentFigure.moveDown(this.board);
             
-            if (!moved) {
-                delete this.state.currentFigure;
-                
-                newState.currentFigure = null;
-                newState.score = this.state.score + this.props.scoreHandler.handleScore(this.board);
-            }
-        } else {
-            var figure = this.props.figureGenerator.generate();
-            var placed = figure.place(this.board, 0, this.props.width / 2 - 1);
+        if (!moved) {
+            newState.currentFigure = this.state.nextFigure;
+            newState.nextFigure = this.props.figureGenerator.generate();
+            newState.score = this.state.score + this.props.scoreHandler.handleScore(this.board);
             
-            if  (placed) {
-                newState.currentFigure = figure;
-            } else {
+            newState.nextFigure.place(this.cleanMatrix(this.previewBoard), 0, 0);
+            var placed = newState.currentFigure.place(this.board, 0, this.props.width / 2 - 1);
+            
+            if (!placed) {
                 this.componentWillUnmount();
                 newState.gameOver = true;
             }
@@ -111,9 +124,15 @@ class Tetris extends React.Component {
                     <div className="tetris-message">{message}</div>
                     <Board board={this.board} />
                 </div>
-                <div className="tetris-score">
-                    <div>Score:</div>
-                    <label>{this.state.score}</label>
+                <div className="tetris-info">
+                    <div className="tetris-score">
+                        <div>Score:</div>
+                        <label>{this.state.score}</label>
+                    </div>
+                    <div className="tetris-preview">
+                        <div>Next figure:</div>
+                        <Board board={this.previewBoard} />
+                    </div>
                 </div>
             </div>
         )

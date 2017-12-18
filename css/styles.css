@@ -31,9 +31,13 @@
     opacity: 0.3;
 }
 
-.tetris-score {
+.tetris-info {
     float: right;
     margin-left: 10px;
+}
+
+.tetris-info > div {
+    margin-bottom: 10px;
 }
 
 .tetris-message {
@@ -49,4 +53,8 @@
     font-weight: bold;
     font-size: 2em;
     text-align: center;
+}
+
+.tetris-preview .square.null {
+    border: none;
 }
