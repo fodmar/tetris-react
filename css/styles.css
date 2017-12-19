@@ -18,6 +18,10 @@
     background-color: orange;
 }
 
+.i {
+    background-color: red;
+}
+
 .tetris-content {
     display: inline-block;
 }
