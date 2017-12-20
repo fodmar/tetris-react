@@ -2,7 +2,8 @@ class FigureGenerator {
     constructor() {
         this.figures = [
             () => new O(),
-            () => new I()
+            () => new I(),
+            () => new Z()
         ];
     }
     

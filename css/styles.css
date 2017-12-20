@@ -22,6 +22,10 @@
     background-color: red;
 }
 
+.z {
+    background-color: blue;
+}
+
 .tetris-content {
     display: inline-block;
 }
