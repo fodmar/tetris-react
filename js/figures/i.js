@@ -4,8 +4,9 @@
  * #
  * #
  */
-class I {
+class I extends Figure {
     constructor() {
+        super("i");
         this.vertical = true;
     }
     
@@ -43,62 +44,12 @@ class I {
         board[this.x + 2][this.y] = symbol;
         board[this.x + 2][this.y + 1] = symbol;
     }
-
-    place(board, x, y) {
-        if (this.canPlace(board, x, y)) {
-            this.x = x;
-            this.y = y;
-            
-            this.draw(board, "i");
-            
-            return true;
-        }
-        
-        return false;
-    }
     
-    move(board, newX, newY) {
-        var result = false;
-        
-        this.draw(board, null);
-        
-        if (this.canPlace(board, newX, newY)) {
-            this.x = newX;
-            this.y = newY;
-            result = true;
-        }
-        
-        this.draw(board, "i");
-        
-        return result;
-    }
-    
-    moveDown(board) {
-        return this.move(board, this.x + 1, this.y);
-    }
-    
-    moveLeft(board) {
-        return this.move(board, this.x, this.y - 1);
-    }
-    
-    moveRight(board) {
-        return this.move(board, this.x, this.y + 1);
-    }
-    
-    rotate(board) {
-        var result = false;
-        
-        this.draw(board, null);
+    doRotate() {
         this.vertical = !this.vertical;
-        
-        if (this.canPlace(board, this.x, this.y)) {
-            result = true;
-        } else {
-            this.vertical = !this.vertical;
-        }
-        
-        this.draw(board, "i");
-        
-        return result;
+    }
+    
+    undoRotate() {
+        this.vertical = !this.vertical;
     }
 }
