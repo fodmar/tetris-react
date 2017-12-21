@@ -4,7 +4,8 @@ class FigureGenerator {
             () => new O(),
             () => new I(),
             () => new Z(),
-            () => new S()
+            () => new S(),
+            () => new T(),
         ];
     }
     

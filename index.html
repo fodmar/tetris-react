@@ -12,7 +12,7 @@
     <div id="error-message" style="display: none;">
         <p>Unexpected error occured, check console for details.</p>
         <ul>
-            <li>For "Cross origin requests" error make sure to serve this file via HTTP server</li>
+            <li>For "Cross origin requests" error make sure to serve this file via HTTP server as Babel must load scripts via AJAX to process them.</li>
         </ul>
     </div>
     <div id="tetris"></div>
@@ -20,6 +20,7 @@
     <script type="text/javascript">
         window.onerror = function (e) {
             document.getElementById("error-message").style.display = "block";
+            console.log(e);
         };
     </script>
     <script type="text/babel" src="js/figures/figure.js"></script>
@@ -27,6 +28,7 @@
     <script type="text/babel" src="js/figures/i.js"></script>
     <script type="text/babel" src="js/figures/z.js"></script>
     <script type="text/babel" src="js/figures/s.js"></script>
+    <script type="text/babel" src="js/figures/t.js"></script>
     <script type="text/babel" src="js/timer.js"></script>
     <script type="text/babel" src="js/keyHandler.js"></script>
     <script type="text/babel" src="js/scoreHandler.js"></script>

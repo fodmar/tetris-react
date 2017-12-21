@@ -30,6 +30,10 @@
     background-color: violet;
 }
 
+.t {
+    background-color: yellow;
+}
+
 .tetris-content {
     display: inline-block;
 }
