@@ -26,24 +26,24 @@ class T extends Figure {
                 board[x + 1][y + 1] = symbol;
                 board[x + 1][y + 2] = symbol;
             });
-            
+
         var deg90 = new Transition(
             function (board, x, y) {
                 return board[x - 1] &&
                        board[x] &&
                        board[x + 1] &&
+                       board[x][y] === null &&
                        board[x][y + 1] === null &&
-                       board[x][y + 2] === null &&
-                       board[x - 1][y + 2] === null &&
-                       board[x + 1][y + 2] === null;
+                       board[x - 1][y] === null &&
+                       board[x + 1][y] === null;
             },
             function (board, symbol, x, y) {
+                board[x][y] = symbol;
                 board[x][y + 1] = symbol;
-                board[x][y + 2] = symbol;
-                board[x - 1][y + 2] = symbol;
-                board[x + 1][y + 2] = symbol;
+                board[x - 1][y] = symbol;
+                board[x + 1][y] = symbol;
             });
-            
+        
         var deg180 = new Transition(
             function (board, x, y) {
                 return board[x - 1] &&
@@ -59,22 +59,22 @@ class T extends Figure {
                 board[x - 1][y + 1] = symbol;
                 board[x - 1][y + 2] = symbol;
             });
-            
+        
         var deg270 = new Transition(
             function (board, x, y) {
                 return board[x - 1] &&
                        board[x] &&
                        board[x + 1] &&
-                       board[x][y] === null &&
                        board[x][y + 1] === null &&
-                       board[x - 1][y] === null &&
-                       board[x + 1][y] === null;
+                       board[x][y + 2] === null &&
+                       board[x - 1][y + 2] === null &&
+                       board[x + 1][y + 2] === null;
             },
             function (board, symbol, x, y) {
-                board[x][y] = symbol;
                 board[x][y + 1] = symbol;
-                board[x - 1][y] = symbol;
-                board[x + 1][y] = symbol;
+                board[x][y + 2] = symbol;
+                board[x - 1][y + 2] = symbol;
+                board[x + 1][y + 2] = symbol;
             });
         
         deg0.next = deg90;
