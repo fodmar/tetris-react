@@ -28,21 +28,21 @@ class L extends Figure {
                 board[x + 2][y] = symbol;
                 board[x + 2][y + 1] = symbol;
             });
-            
+
         var deg90 = new Transition(
             function (board, x, y) {
                 return board[x + 1] &&
                        board[x + 2] &&
+                       board[x + 1][y - 1] === null &&
+                       board[x + 1][y] === null &&
                        board[x + 1][y + 1] === null &&
-                       board[x + 2][y - 1] === null &&
-                       board[x + 2][y] === null &&
-                       board[x + 2][y + 1] === null;
+                       board[x + 2][y - 1] === null;
             },
             function (board, symbol, x, y) {
+                board[x + 1][y - 1] = symbol;
+                board[x + 1][y] = symbol;
                 board[x + 1][y + 1] = symbol;
                 board[x + 2][y - 1] = symbol;
-                board[x + 2][y] = symbol;
-                board[x + 2][y + 1] = symbol;
             });
             
         var deg180 = new Transition(
@@ -61,22 +61,23 @@ class L extends Figure {
                 board[x + 1][y] = symbol;
                 board[x + 2][y] = symbol;
             });
-            
+
         var deg270 = new Transition(
             function (board, x, y) {
                 return board[x + 1] &&
                        board[x + 2] &&
-                       board[x + 1][y - 1] === null &&
-                       board[x + 1][y] === null &&
                        board[x + 1][y + 1] === null &&
-                       board[x + 2][y - 1] === null;
+                       board[x + 2][y - 1] === null &&
+                       board[x + 2][y] === null &&
+                       board[x + 2][y + 1] === null;
             },
             function (board, symbol, x, y) {
-                board[x + 1][y - 1] = symbol;
-                board[x + 1][y] = symbol;
                 board[x + 1][y + 1] = symbol;
                 board[x + 2][y - 1] = symbol;
+                board[x + 2][y] = symbol;
+                board[x + 2][y + 1] = symbol;
             });
+            
         
         deg0.next = deg90;
         deg90.next = deg180;
