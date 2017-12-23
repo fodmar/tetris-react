@@ -6,7 +6,8 @@ class FigureGenerator {
             () => new Z(),
             () => new S(),
             () => new T(),
-            () => new L()
+            () => new L(),
+            () => new J()
         ];
     }
     

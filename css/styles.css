@@ -38,6 +38,10 @@
     background-color: green;
 }
 
+.j {
+    background-color: aqua;
+}
+
 .tetris-content {
     display: inline-block;
 }
